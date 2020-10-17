@@ -1,0 +1,178 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server Coopeuh server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "Swagger Coopeuh"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "petstore.swagger.io"
+basePath: "/v2"
+tags:
+- name: "Tarea"
+  description: "Administrador de tareas"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "https"
+- "http"
+paths:
+  /tarea:
+    post:
+      tags:
+      - "Tareas"
+      summary: "Add a new Tarea"
+      description: ""
+      operationId: "addTarea"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Tarea"
+      responses:
+        "405":
+          description: "Invalid input"
+      security:
+      - tareastore_auth:
+        - "write:tareas"
+        - "read:tareas"
+    put:
+      tags:
+      - "tarea"
+      summary: "Update an existing tarea"
+      description: ""
+      operationId: "updateTarea"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Tarea"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Pet not found"
+        "405":
+          description: "Validation exception"
+      security:
+      - tareastore_auth:
+        - "write:tareas"
+        - "read:tareas"
+ 
+  
+  /tarea/{identificador}:
+    get:
+      tags:
+      - "Tarea"
+      summary: "Find tarea by ID"
+      description: "Returns a single tarea"
+      operationId: "getPetById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "identificador"
+        in: "path"
+        description: "ID of tarea to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Tarea"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Pet not found"
+      security:
+      - api_key: []
+    delete:
+      tags:
+      - "tarea"
+      summary: "Deletes a tarea"
+      description: ""
+      operationId: "deleteTarea"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "identificador"
+        in: "path"
+        description: "Tarea id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Tarea not found"
+      security:
+      - tareastore_auth:
+        - "write:tareas"
+        - "read:tareas"
+ 
+securityDefinitions:
+  tareastore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:tareas: "modify tareas in your account"
+      read:tareas: "read your tareas"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  
+  Tarea:  
+    type: "object"
+    properties:
+      identificador:
+        type: "number"
+      descripcion:
+        type: "string"
+      fechaCreacion:
+        type: "string"
+      vigente:
+        type: "boolean"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
