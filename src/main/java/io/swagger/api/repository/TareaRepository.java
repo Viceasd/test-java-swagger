@@ -21,8 +21,7 @@ public class TareaRepository {
     }
 
     public EntityTarea modificarTarea(Tarea tarea){
-        EntityTarea entityTarea = new EntityTarea();
-        entityTarea = findByIdentificador(tarea.getIdentificador());
+        EntityTarea entityTarea = findByIdentificador(tarea.getIdentificador());
         entityTarea.setDescripcion(tarea.getDescripcion());
         entityTarea.setVigente(tarea.isVigente());
         return entityTareaRepository.save(entityTarea);
@@ -30,8 +29,7 @@ public class TareaRepository {
     }
 
     public void  deleteTarea(Tarea tarea){
-        EntityTarea entityTarea = new EntityTarea();
-        entityTarea = findByIdentificador(tarea.getIdentificador());
+        EntityTarea entityTarea = findByIdentificador(tarea.getIdentificador());
         entityTareaRepository.delete(entityTarea);
 
     }
