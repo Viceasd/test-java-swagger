@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.text.ParseException;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2020-10-17T06:36:53.383Z")
 
@@ -38,7 +39,7 @@ public class TareaApiController implements TareaApi {
         this.request = request;
     }
 
-    public ResponseEntity<Tarea> addTarea(@ApiParam(value = "Tarea object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body) {
+    public ResponseEntity<Tarea> addTarea(@ApiParam(value = "Tarea object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body) throws ParseException {
         String accept = request.getHeader("Accept");
         EntityTarea entityTarea = tareaRepository.crearTarea(body);
         Tarea tarea = parseToTarea(entityTarea);
