@@ -37,7 +37,7 @@ public class TareaApiController implements TareaApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> addTarea(@ApiParam(value = "Pet object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body) {
+    public ResponseEntity<Void> addTarea(@ApiParam(value = "Tarea object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
@@ -47,7 +47,7 @@ public class TareaApiController implements TareaApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Tarea> getPetById(@ApiParam(value = "ID of tarea to return",required=true) @PathVariable("identificador") Long identificador) {
+    public ResponseEntity<Tarea> getTareaById(@ApiParam(value = "ID of tarea to return",required=true) @PathVariable("identificador") Long identificador) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/xml")) {
             try {
@@ -70,7 +70,7 @@ public class TareaApiController implements TareaApi {
         return new ResponseEntity<Tarea>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> updateTarea(@ApiParam(value = "Pet object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body) {
+    public ResponseEntity<Void> updateTarea(@ApiParam(value = "Tarea object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }

@@ -39,7 +39,7 @@ public interface TareaApi {
         produces = { "application/xml", "application/json" }, 
         consumes = { "application/json", "application/xml" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> addTarea(@ApiParam(value = "Pet object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body);
+    ResponseEntity<Void> addTarea(@ApiParam(value = "Tarea object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body);
 
 
     @ApiOperation(value = "Deletes a tarea", nickname = "deleteTarea", notes = "", authorizations = {
@@ -57,17 +57,17 @@ public interface TareaApi {
     ResponseEntity<Void> deleteTarea(@ApiParam(value = "Tarea id to delete",required=true) @PathVariable("identificador") Long identificador,@ApiParam(value = "" ) @RequestHeader(value="api_key", required=false) String apiKey);
 
 
-    @ApiOperation(value = "Find tarea by ID", nickname = "getPetById", notes = "Returns a single tarea", response = Tarea.class, authorizations = {
+    @ApiOperation(value = "Find tarea by ID", nickname = "getTareaById", notes = "Returns a single tarea", response = Tarea.class, authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "Tarea", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = Tarea.class),
         @ApiResponse(code = 400, message = "Invalid ID supplied"),
-        @ApiResponse(code = 404, message = "Pet not found") })
+        @ApiResponse(code = 404, message = "Tarea not found") })
     @RequestMapping(value = "/tarea/{identificador}",
         produces = { "application/xml", "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Tarea> getPetById(@ApiParam(value = "ID of tarea to return",required=true) @PathVariable("identificador") Long identificador);
+    ResponseEntity<Tarea> getTareaById(@ApiParam(value = "ID of tarea to return",required=true) @PathVariable("identificador") Long identificador);
 
 
     @ApiOperation(value = "Update an existing tarea", nickname = "updateTarea", notes = "", authorizations = {
@@ -78,12 +78,12 @@ public interface TareaApi {
     }, tags={ "tarea", })
     @ApiResponses(value = { 
         @ApiResponse(code = 400, message = "Invalid ID supplied"),
-        @ApiResponse(code = 404, message = "Pet not found"),
+        @ApiResponse(code = 404, message = "Tarea not found"),
         @ApiResponse(code = 405, message = "Validation exception") })
     @RequestMapping(value = "/tarea",
         produces = { "application/xml", "application/json" }, 
         consumes = { "application/json", "application/xml" },
         method = RequestMethod.PUT)
-    ResponseEntity<Void> updateTarea(@ApiParam(value = "Pet object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body);
+    ResponseEntity<Void> updateTarea(@ApiParam(value = "Tarea object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body);
 
 }
