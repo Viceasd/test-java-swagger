@@ -50,7 +50,7 @@ public interface TareaApi {
     @RequestMapping(value = "/tarea/{identificador}",
         produces = { "application/xml", "application/json" }, 
         method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteTarea(@ApiParam(value = "Tarea id to delete",required=true) @PathVariable("identificador") Long identificador,@ApiParam(value = "" ) @RequestHeader(value="api_key", required=false) String apiKey);
+    ResponseEntity<String> deleteTarea(@ApiParam(value = "Tarea id to delete",required=true) @PathVariable("identificador") Long identificador,@ApiParam(value = "" ) @RequestHeader(value="api_key", required=false) String apiKey);
 
 
     @ApiOperation(value = "Find tarea by ID", nickname = "getTareaById", notes = "Returns a single tarea", response = Tarea.class, authorizations = {
@@ -80,6 +80,6 @@ public interface TareaApi {
         produces = { "application/xml", "application/json" }, 
         consumes = { "application/json", "application/xml" },
         method = RequestMethod.PUT)
-    ResponseEntity<Void> updateTarea(@ApiParam(value = "Tarea object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body);
+    ResponseEntity<Tarea> updateTarea(@ApiParam(value = "Tarea object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body);
 
 }
