@@ -79,7 +79,6 @@ public class TareaApiController implements TareaApi {
     }
 
     public ResponseEntity<Tarea> updateTarea(@ApiParam(value = "Tarea object that needs to be added to the store" ,required=true )  @Valid @RequestBody Tarea body) {
-        String accept = request.getHeader("Accept");
         EntityTarea tareaEntity = tareaRepository.modificarTarea(body);
         Tarea tarea = parseToTarea(tareaEntity);
         return  ResponseEntity.accepted().body(tarea);
